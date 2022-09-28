@@ -1,0 +1,10 @@
+POST http://localhost:3001/add HTTP/1.1
+content-type: "application/json"
+
+{
+    "email": "austin@austin.com",
+    "password": "12345"
+}
+
+###
+http://localhost:3001/speeches
