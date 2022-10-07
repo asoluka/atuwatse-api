@@ -22,11 +22,7 @@ const login = async (payload) => {
 
 	if (user) {
 		if (user.password === password) {
-			const id = user._id;
-			delete user.password;
-			delete user._id;
-
-			return user;
+			return serializeUser(user);
 		} else {
 			return null;
 		}
@@ -37,6 +33,15 @@ const login = async (payload) => {
 
 async function findByEmail(email) {
 	return User.findOne({ email });
+}
+
+function serializeUser(user) {
+	return {
+		id: user?._id,
+		email: user?.email,
+		firstName: user?.firstName,
+		lastName: user?.lastName,
+	};
 }
 
 module.exports = {
