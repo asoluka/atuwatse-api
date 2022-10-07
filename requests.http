@@ -8,3 +8,14 @@ content-type: "application/json"
 
 ###
 http://localhost:3001/speeches
+
+###
+POST http://localhost:3001/api/auth/sign-up
+Content-Type: "application/json"
+
+{ 
+	"email": "stracool9@gmail.com",
+	"firstName": "Austin", 
+	"lastName": "Asoluka", 
+	"password": "12345" 
+}
