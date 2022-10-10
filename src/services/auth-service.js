@@ -1,18 +1,19 @@
 const { User } = require("../models/auth-model");
 const { presskit } = require("../models/presskit-model");
+const { DefaultError } = require("../utils/apiError");
 
 const register = async (payload) => {
 	const user = await findByEmail(payload.email);
 
 	if (user) {
-		return "user exists";
+		return null;
 	}
 
 	try {
 		const newUser = new User(payload);
 		return newUser.save();
 	} catch (e) {
-		throw new Error(e);
+		throw new DefaultError();
 	}
 };
 

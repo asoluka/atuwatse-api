@@ -4,16 +4,13 @@ const { register, login } = require("../services/auth-service");
 router.post("/sign-up", async (req, res) => {
 	const response = await register(req.body);
 
-	if (response === "user exists") {
-		return res.status(500).json({ error: response });
-	}
-
 	if (response) {
 		res.json({
 			message: "User created successfully",
 			payload: response,
 		});
 	}
+	res.status(500).json({ message: "something went wrong" });
 });
 
 router.post("/login", async (req, res) => {

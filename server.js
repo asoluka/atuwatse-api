@@ -4,7 +4,7 @@ const speechesController = require("./src/controllers/speeches-controller");
 const authController = require("./src/controllers/auth-controller");
 const app = express();
 const mongoose = require("mongoose");
-const errorHandler = require("./middlewares/errorHandler");
+const ErrorHandlingMiddleware = require("./src/middlewares/errorHandler");
 
 mongoose
 	.connect(
@@ -30,7 +30,8 @@ app.use("/api/auth", authController);
 app.use("/api/speeches", speechesController);
 app.use("/api/presskit", presskitController);
 
-app.use(errorHandler);
+ErrorHandlingMiddleware(app);
+
 app.listen(3001, () => {
 	console.log("App running.");
 });
