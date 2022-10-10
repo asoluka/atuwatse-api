@@ -6,7 +6,7 @@ const register = async (payload) => {
 	const user = await findByEmail(payload.email);
 
 	if (user) {
-		return null;
+		throw new AuthenticationError();
 	}
 
 	try {
