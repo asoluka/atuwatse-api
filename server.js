@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const presskitController = require("./src/controllers/presskit-controller");
 const speechesController = require("./src/controllers/speeches-controller");

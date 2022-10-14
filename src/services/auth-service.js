@@ -1,6 +1,7 @@
 const { User } = require("../models/auth-model");
 const { presskit } = require("../models/presskit-model");
 const { DefaultError } = require("../utils/apiError");
+const jwt = require("jsonwebtoken");
 
 const register = async (payload) => {
 	const user = await findByEmail(payload.email);
@@ -23,7 +24,12 @@ const login = async (payload) => {
 
 	if (user) {
 		if (user.password === password) {
-			return serializeUser(user);
+			// create a token and send to the user jwt.sign
+			const token = jwt.sign(serializeUser(user), process.env.AUTH_SECRET);
+			return {
+				token,
+				user: serializeUser(user),
+			};
 		} else {
 			return null;
 		}

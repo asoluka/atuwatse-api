@@ -24,7 +24,7 @@ router.post(
 		/**
 		 * accept request and send to login service
 		 */
-		const response = await login(req.body);
+		const response = await login(req.body, req.headers);
 		if (response) {
 			res.json({
 				message: "login successful",
